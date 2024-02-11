@@ -1,6 +1,7 @@
 const wordDisplay = document.querySelector(".word-display");
 const keyboardDiv = document.querySelector(".keyboard");
-const guessesText = document.querySelector(".guesses-text");
+const hungmanImage = document.querySelector(".hungman-box img");
+const guessesText = document.querySelector(".guesses-text b");
 
 let currentWord,
   wrongGuessCount = 0;
@@ -29,7 +30,7 @@ const initGame = (button, clickedLetter) => {
   } else {
     wrongGuessCount++;
   }
-  guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`;
+  guessesText.innerText = ` ${wrongGuessCount} / ${maxGuesses}`;
 };
 
 // keyboardButtons
