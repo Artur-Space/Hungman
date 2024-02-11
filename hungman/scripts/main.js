@@ -1,5 +1,10 @@
 const wordDisplay = document.querySelector(".word-display");
 const keyboardDiv = document.querySelector(".keyboard");
+const guessesText = document.querySelector(".guesses-text");
+
+let currentWord,
+  wrongGuessCount = 0;
+const maxGuesses = 6;
 
 const getRandomWord = () => {
   const { word, hint } = wordList[Math.floor(Math.random() * wordList.length)];
@@ -14,10 +19,17 @@ const getRandomWord = () => {
 
 const initGame = (button, clickedLetter) => {
   if (currentWord.includes(clickedLetter)) {
-    console.log(clickedLetter, " is exist on the word");
+    // Showing all correct letters on the word display
+    [...currentWord].forEach((letter, index) => {
+      if (letter === clickedLetter) {
+        wordDisplay.querySelectorAll("li")[index].innerText = letter;
+        wordDisplay.querySelectorAll("li")[index].classList.add("guessed");
+      }
+    });
   } else {
-    console.log(clickedLetter, " is not exist on the word");
+    wrongGuessCount++;
   }
+  guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`;
 };
 
 // keyboardButtons
